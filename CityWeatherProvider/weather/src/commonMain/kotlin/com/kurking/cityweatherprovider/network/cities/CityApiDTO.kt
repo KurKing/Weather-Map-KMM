@@ -1,4 +1,4 @@
-package com.kurking.cityweatherprovider.city
+package com.kurking.cityweatherprovider.network.cities
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

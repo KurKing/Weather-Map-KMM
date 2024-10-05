@@ -2,7 +2,6 @@ package com.kurking.cityweatherprovider.cache
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import com.kurking.cityweatherprovider.city.DatabaseDriverFactory
 
 class IOSDatabaseDriverFactory : DatabaseDriverFactory {
 

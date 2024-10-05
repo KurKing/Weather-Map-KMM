@@ -1,7 +1,6 @@
 package com.kurking.cityweatherprovider.cache
 
-import com.kurking.cityweatherprovider.city.CityApiDTO
-import com.kurking.cityweatherprovider.city.DatabaseDriverFactory
+import com.kurking.cityweatherprovider.network.cities.CityApiDTO
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
 

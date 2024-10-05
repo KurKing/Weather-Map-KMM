@@ -1,9 +1,8 @@
 package com.kurking.cityweatherprovider
 
-import com.kurking.cityweatherprovider.cache.City
 import com.kurking.cityweatherprovider.cache.Database
 import com.kurking.cityweatherprovider.cache.IOSDatabaseDriverFactory
-import com.kurking.cityweatherprovider.city.CityApiDTO
+import com.kurking.cityweatherprovider.network.cities.CityApiDTO
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
