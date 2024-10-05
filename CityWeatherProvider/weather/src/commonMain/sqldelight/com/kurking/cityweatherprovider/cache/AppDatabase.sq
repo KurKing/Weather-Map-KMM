@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS City (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    longitude REAL NOT NULL,
+    latitude REAL NOT NULL
+);
+
+insertCity:
+INSERT INTO City (name, longitude, latitude) VALUES (?, ?, ?);
+
+selectAllCities:
+SELECT * FROM City;
