@@ -13,14 +13,11 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class CityApiException(message: String) : Exception(message)
 
-class CityApiClient {
+class CityApiClient(val keyProvider: CityApiKeyProvider) {
 
     private val httpClient = HttpClient {
-
         install(ContentNegotiation) {
-
             json(Json {
-
                 ignoreUnknownKeys = true
                 useAlternativeNames = false
             })
@@ -38,7 +35,7 @@ class CityApiClient {
                     "&radius=100" +
                     "&min_population=100000")
             headers {
-                append("x-rapidapi-key", "f150990606msh77b3ff9464e5904p1c3c4ajsn0bee3bf118ef")
+                append("x-rapidapi-key", keyProvider.getApiKey())
                 append("x-rapidapi-host", "world-geo-data.p.rapidapi.com")
             }
         }
