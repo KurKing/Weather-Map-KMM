@@ -8,9 +8,6 @@ CREATE TABLE IF NOT EXISTS City (
 insertCity:
 INSERT INTO City (name, longitude, latitude) VALUES (?, ?, ?);
 
-selectAllCities:
-SELECT * FROM City;
-
 selectCitiesNearby:
 SELECT * FROM City WHERE longitude BETWEEN ? AND ? AND latitude BETWEEN ? AND ?;
 

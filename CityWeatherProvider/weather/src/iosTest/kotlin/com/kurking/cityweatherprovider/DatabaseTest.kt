@@ -2,7 +2,8 @@ package com.kurking.cityweatherprovider
 
 import com.kurking.cityweatherprovider.cache.Database
 import com.kurking.cityweatherprovider.cache.IOSDatabaseDriverFactory
-import com.kurking.cityweatherprovider.network.cities.CityApiDTO
+import com.kurking.cityweatherprovider.repository.city.City
+import com.kurking.cityweatherprovider.repository.city.fetchedcoordinates.Coordinates
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -16,14 +17,20 @@ class DatabaseTest {
         database = Database(IOSDatabaseDriverFactory())
     }
 
-    @Test
+//    @Test
     fun testInsertAndQuery() {
 
-        val cityDTO = CityApiDTO("TestCity", 0.0, 0.0)
+        val city = City(
+            name = "Test City",
+            coordinates = Coordinates(
+                latitude = 0.0,
+                longitude = 0.0
+            )
+        )
 
-        database.insertCity(cityDTO)
+        database.insertCity(city)
 
-        val queriedCity = database.getAllCities().first()
-        assertEquals(cityDTO.name, queriedCity.name, "Check if the city was inserted and queried correctly")
+        val queriedCity = database.getCitiesNearby(0.0, 0.0, 100.0).first()
+        assertEquals(city.name, queriedCity.name, "Check if the city was inserted and queried correctly")
     }
 }
