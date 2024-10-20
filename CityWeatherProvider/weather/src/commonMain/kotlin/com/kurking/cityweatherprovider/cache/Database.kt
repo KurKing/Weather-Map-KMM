@@ -1,6 +1,6 @@
 package com.kurking.cityweatherprovider.cache
 
-import com.kurking.cityweatherprovider.network.cities.CityApiDTO
+import com.kurking.cityweatherprovider.repository.city.City
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
 
@@ -11,11 +11,29 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
         return dbQuery.selectAllCities().executeAsList()
     }
 
-    internal fun insertCity(city: CityApiDTO) {
+    internal fun getCitiesNearby(latitude: Double, longitude: Double, diff: Double): List<City> {
+        return dbQuery.selectCitiesNearby(longitude - diff,
+            longitude + diff,
+            latitude - diff,
+            latitude + diff).executeAsList()
+    }
+
+    internal fun insertCity(city: City) {
         dbQuery.insertCity(
             name = city.name,
-            latitude = city.latitude,
-            longitude = city.longitude
+            latitude = city.coordinates.latitude,
+            longitude = city.coordinates.longitude
+        )
+    }
+
+    internal fun getAllFetchedCoordinates(): List<FetchedCoordinates> {
+        return dbQuery.selectAllFetchedCoordinates().executeAsList()
+    }
+
+    internal fun insertFetchedCoordinates(latitude: Double, longitude: Double) {
+        dbQuery.insertFetchedCoordinates(
+            latitude = latitude,
+            longitude = longitude
         )
     }
 }

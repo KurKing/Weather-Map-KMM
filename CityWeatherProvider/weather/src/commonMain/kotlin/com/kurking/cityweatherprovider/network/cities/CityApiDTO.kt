@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CityApiDTO(
+internal data class CityApiDTO(
     @SerialName("name")
     val name: String,
     @SerialName("latitude")

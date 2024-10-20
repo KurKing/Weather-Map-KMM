@@ -11,9 +11,9 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 
-class CityApiException(message: String) : Exception(message)
+internal class CityApiException(message: String) : Exception(message)
 
-class CityApiClient(val keyProvider: CityApiKeyProvider) {
+internal class CityApiClient(private val keyProvider: CityApiKeyProvider) {
 
     private val httpClient = HttpClient {
         install(ContentNegotiation) {
@@ -25,7 +25,7 @@ class CityApiClient(val keyProvider: CityApiKeyProvider) {
     }
 
     @Throws(CityApiException::class, CancellationException::class)
-    suspend fun getCities(latitude: Double, longitude: Double): List<CityApiDTO> {
+    internal suspend fun getCities(latitude: Double, longitude: Double): List<CityApiDTO> {
 
         val response = httpClient.get {
             url("https://world-geo-data.p.rapidapi.com/cities/nearby?format=json" +
