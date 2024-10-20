@@ -5,12 +5,14 @@ import com.kurking.cityweatherprovider.network.cities.CityApiClient
 import com.kurking.cityweatherprovider.network.cities.CityApiException
 import com.kurking.cityweatherprovider.repository.city.fetchedcoordinates.Coordinates
 import com.kurking.cityweatherprovider.repository.city.fetchedcoordinates.FetchedCityCoordinatesRepository
+import com.kurking.cityweatherprovider.repository.city.fetchedcoordinates.LocalFetchedCityCoordinatesRepository
 
 internal class CityLocalRemoteRepository(
     private val database: Database,
     private val cityApi: CityApiClient,
-    private val fetchedCityCoordinatesRepository: FetchedCityCoordinatesRepository
 ): CityRepository {
+
+    private val fetchedCityCoordinatesRepository: FetchedCityCoordinatesRepository = LocalFetchedCityCoordinatesRepository(database)
 
     override suspend fun getCityNearbyCoordinates(coordinates: Coordinates): List<City> {
 

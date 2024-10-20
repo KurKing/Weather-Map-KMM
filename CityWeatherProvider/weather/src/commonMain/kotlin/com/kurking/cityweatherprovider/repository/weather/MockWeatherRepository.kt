@@ -1,15 +1,28 @@
 package com.kurking.cityweatherprovider.repository.weather
 
-class MockWeatherRepository: WeatherRepository {
+import com.kurking.cityweatherprovider.cache.Database
 
-    override suspend fun getWeatherForLocation(latitude: Double, longitude: Double): WeatherItem {
+internal class MockWeatherRepository(
+    private val database: Database
+): WeatherRepository {
 
-        return WeatherItem(
-            temperature = 20,
-            windSpeed = 5.0,
-            humidity = 50,
-            iconId = 1,
-            date = 0
-        )
+    override suspend fun getWeatherForLocation(latitude: Double, longitude: Double): List<WeatherItem> {
+
+        val list = mutableListOf<WeatherItem>()
+
+        for (index in 0..4) {
+
+            list.add(
+                WeatherItem(
+                    temperature = index * 5,
+                    windSpeed = 5.0,
+                    humidity = 50,
+                    iconId = 23,
+                    date = 0
+                )
+            )
+        }
+
+        return list;
     }
 }
